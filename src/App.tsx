@@ -13,10 +13,10 @@ interface State {
   clockName: string;
 }
 
-export class App extends React.Component<State> {
+export class App extends React.Component<{}, State> {
   private timerId?: number;
 
-  constructor(props: Props) {
+  constructor(props: {}) {
     super(props);
     this.state = {
       hasClock: false,
