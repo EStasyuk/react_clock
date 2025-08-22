@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.scss';
-import { event } from 'cypress/types/jquery';
 import { Clock } from './Clock';
 
 function getRandomName(): string {
@@ -9,16 +8,12 @@ function getRandomName(): string {
   return `Clock-${value}`;
 }
 
-interface Props {
-  name: string;
-}
-
 interface State {
   hasClock: boolean;
   clockName: string;
 }
 
-export class App extends React.Component<Props, State> {
+export class App extends React.Component<State> {
   private timerId?: number;
 
   constructor(props: Props) {
@@ -28,8 +23,6 @@ export class App extends React.Component<Props, State> {
       clockName: 'Clock-0',
     };
   }
-
-  state: State = { hasClock: false, clockName: 'Clock-0' };
 
   handleShowClock = () => {
     this.setState({ hasClock: true });
@@ -60,10 +53,6 @@ export class App extends React.Component<Props, State> {
         <h1>React clock</h1>
         <div className="App">
           {this.state.hasClock ? <Clock name={this.state.clockName} /> : null}
-        </div>
-
-        <div className="Clock">
-          <strong className="Clock__name">{this.props.name}</strong>
         </div>
       </div>
     );
